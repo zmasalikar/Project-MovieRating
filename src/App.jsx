@@ -41,25 +41,30 @@ const App = () => {
   });
 
   return (
-    <div className="p-4 bg-gray-100 min-h-screen">
-      <h1 className="text-3xl font-bold mb-4 text-center">🎬 Movie Review App</h1>
-      <SearchBar setSearchTerm={setSearchTerm} />
-      <FilterBar
-        setGenreFilter={setGenreFilter}
-        setYearFilter={setYearFilter}
-        setRatingFilter={setRatingFilter}
-      />
-      {filteredMovies.length === 0 ? (
-        <p className="text-center text-gray-600">No movies found. Try a different search or filter.</p>
-      ) : (
-        <MovieList movies={filteredMovies} onMovieClick={setSelectedMovie} />
-      )}
-      {selectedMovie && (
-        <MovieDetailModal movie={selectedMovie} onClose={() => setSelectedMovie(null)} />
-      )}
+    <div className="bg-gradient-to-br from-gray-100 via-gray-200 to-gray-300 min-h-screen text-black font-sans p-4">
+      <div className="max-w-6xl mx-auto">
+        <h1 className="text-4xl font-extrabold text-center mb-6 drop-shadow-lg text-black">🎬 Movie Review Galaxy</h1>
+        <div className="bg-white rounded-lg shadow-md p-6 mb-6">
+          <SearchBar onSearch={(term) => setSearchTerm(term)} />
+          <FilterBar
+            setGenreFilter={setGenreFilter}
+            setYearFilter={setYearFilter}
+            setRatingFilter={setRatingFilter}
+          />
+        </div>
+
+        {filteredMovies.length === 0 ? (
+          <p className="text-center text-gray-700 mt-10">No movies found. Try a different search or filter.</p>
+        ) : (
+          <MovieList movies={filteredMovies} onMovieClick={setSelectedMovie} />
+        )}
+
+        {selectedMovie && (
+          <MovieDetailModal movie={selectedMovie} onClose={() => setSelectedMovie(null)} />
+        )}
+      </div>
     </div>
   );
 };
 
 export default App;
-
