@@ -15,13 +15,13 @@ const App = () => {
   const [ratingFilter, setRatingFilter] = useState(0);
 
   useEffect(() => {
-    fetch(`http://www.omdbapi.com/?apikey=${API_KEY}&s=${searchTerm}`)
+    fetch(`https://www.omdbapi.com/?apikey=${API_KEY}&s=${searchTerm}`)
       .then(res => res.json())
       .then(async data => {
         if (data.Search) {
           const detailed = await Promise.all(
             data.Search.map(item =>
-              fetch(`http://www.omdbapi.com/?apikey=${API_KEY}&i=${item.imdbID}`)
+              fetch(`https://www.omdbapi.com/?apikey=${API_KEY}&i=${item.imdbID}`)
                 .then(res => res.json())
             )
           );
